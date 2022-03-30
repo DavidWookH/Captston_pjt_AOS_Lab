@@ -146,23 +146,22 @@ def check_orders():
     print(f' ')
 
 def log_in(username, password):
-    if driver.current_url == locators.adshopcart_url:
-       driver.find_element(By.ID, 'menuUserLink').click()
-       print(f'*--[LOG IN PAGES]--------------------------------------------------------------*')
-       print(f'## Login page is displayed! please Continue.')
-       sleep(1)
-       driver.find_element(By.NAME, 'username').send_keys(locators.new_username)
-       sleep(0.5)
-       driver.find_element(By.NAME, 'password').send_keys(locators.new_password)
-       sleep(0.5)
-       driver.find_element(By.ID, 'sign_in_btnundefined').click() #method 1 using ID
-       # driver.find_element(By.XPATH,'//button[contains(text(),"SIGN IN")]').click() # method 3 using XPATH
-       sleep(0.5)
-       if driver.current_url == locators.adshopcart_url and  locators.adshopcart_home_page_title in driver.title:
-          print(f'{locators.app}  Login is successful. {datetime.datetime.now()} ')
-          print("")
-       else:
-          print(f'Dashboard is not displayed. Check your code or website and try again.')
+    if (username==locators.new_username and password == locators.new_password):
+        driver.find_element(By.ID, 'menuUserLink').click()
+        print(f'*--[LOG IN PAGES]--------------------------------------------------------------*')
+        print(f'## Login page is displayed! please Continue.')
+        sleep(1)
+        driver.find_element(By.NAME, 'username').send_keys(username)
+        sleep(0.5)
+        driver.find_element(By.NAME, 'password').send_keys(password)
+        sleep(0.5)
+        driver.find_element(By.ID, 'sign_in_btnundefined').click() #method 1 using ID
+        # driver.find_element(By.XPATH,'//button[contains(text(),"SIGN IN")]').click() # method 3 using XPATH
+        sleep(0.5)
+        print(f'{locators.app}  Login is successful. {datetime.datetime.now()} ')
+        print("")
+    else:
+        print(f' There is something wrong with login. please check again ')
 
 def log_out():
     print(f'*---[Sign Out]----------------------------------------------------------------*')
@@ -191,6 +190,15 @@ def delete_test_account():
     sleep(3)
     print(f'*--DELETION COMPLETED : {datetime.datetime.now()} ----------------------------------*')
     # -----------------------------------------------------------------------------
+
+def credential_check():
+    assert driver.find_element(By.XPATH, f'//label[contains(., "{locators.loginerror}")]').is_displayed()
+    checkerror = (driver.find_element(By.XPATH, f'//label[contains(.,"{locators.loginerror}")]').is_displayed())
+    if (checkerror):
+       print(f' Error lable - Incorrect user name or password - is verified ')
+    else:
+        print(f'Credential test is passed ')
+
 def tearDown():
     if driver is not None:
         print(f'*--------------------------------------------------------------------------------------------*')
@@ -207,6 +215,7 @@ def tearDown():
 # log_out()
 # log_in(locators.new_username,locators.new_password)
 # delete_test_account()
-# #log_in(locators.delname,locators.delpwd)
+# log_in(locators.new_username,locators.new_password)
+# credential_check()
 # tearDown()
 

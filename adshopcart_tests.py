@@ -13,10 +13,12 @@ class AdshopcartAppPositiveTestCases(unittest.TestCase):
         methods.log_out()  # logout
         methods.log_in(locators.new_username,locators.new_password)
         methods.delete_test_account()
+        methods.log_in(locators.new_username,locators.new_password)
+        methods.credential_check()
         methods.tearDown()
 
-        # methods.log_in(locators.admin_name,locators.admin_password)
-        # methods.delete_user()
-        # methods.log_out()
-        # methods.tearDown()
+
+
+
+
 
