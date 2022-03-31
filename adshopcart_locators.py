@@ -1,4 +1,5 @@
 import datetime
+import random
 from faker import Faker
 fake = Faker(locale='en_CA')
 
@@ -42,5 +43,30 @@ address_only = address2.replace(",", " ")
 delname = new_username
 delpwd = new_password
 
+#-----LAB 4-1. Homepage check list ----------------
+homepg_dsp1 ='SPEAKERS'
+homepg_dsp2 ='TABLETS'
+homepg_dsp3 ='HEADPHONES'
+homepg_dsp4 ='LAPTOPS'
+homepg_dsp5 ='MICE'
+#-----LAB 4-2. Homepage check list ----------------
+lst_prod=['Laptops', 'Headphones', 'Tablets','Speakers','Mice']
+contact1=lst_prod[random.randint(0,4)]
+if contact1 == 'Laptops':
+   contact2 = 'HP ENVY - 17t Touch Laptop'
+elif contact1 == 'Headphones':
+     contact2 = 'Logitech USB Headset H390'
+elif contact1 == 'Tablets':
+     contact2 = 'HP Pro Tablet 608 G1'
+elif contact1 =='Speakers':
+     contact2 = 'Bose SoundLink Wireless Speaker'
+elif contact1 == 'Mice':
+     contact2 = 'Logitech G502 Proteus Core'
+else : breakpoint()
+
+description = f'Python Selenium Automated script for Capstone on {datetime.datetime.now()}'
+# SPECIAL OFFER
+# POPULAR ITEMS
+# CONSTACT US
 
 # # -----------------------------------------------------------------------
